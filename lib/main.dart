@@ -1,37 +1,45 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'package:get/get.dart';
+import 'package:practicsflutterallproject/ecoomerapp/model/productmodel.dart';
+import 'package:practicsflutterallproject/firebase_options.dart';
 
-import 'aboutdialogwidget.dart';
-import 'aboutlisttile.dart';
-import 'absorbPointer.dart';
-import 'alertDialog.dart';
-import 'animatedBuilder.dart';
-import 'animateddContainer.dart';
-import 'animatedlign.dart';
-import 'animationdefaulttextstyle.dart';
-import 'autocompletewidget.dart';
-import 'intenetconnection/internetconnectionPage.dart';
-import 'switchAnimatedCrossfade.dart';
+import 'ecoomerapp/controller/cartProvider.dart';
+import 'ecoomerapp/screen/productscreen.dart';
+import 'intenetconnection/internetcheckingcontrller.dart';
+import 'listexample.dart/Ascending.dart';
+import 'listexample.dart/Fixed-Length.dart';
+import 'listexample.dart/PlaceholderListScreen.dart';
+import 'listexample.dart/Searching.dart';
+import 'listexample.dart/everylistcondition.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  MyApp({super.key});
+  final NetworkController internetCheck = Get.put(NetworkController());
+ProductModel productModel = ProductModel();
   // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+   Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => CartProvider(),
+      child: MaterialApp(
+        title: 'E-commerce App',
+        theme: ThemeData(
+          primarySwatch: Colors.deepPurple,
+          useMaterial3: true,
+        ),
+        home: ProductListScreen(),
       ),
-      home: Internetconnectionpage(),
     );
   }
 }
