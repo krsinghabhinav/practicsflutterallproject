@@ -13,15 +13,15 @@ class CartScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Your Cart'),
       ),
-      body: cartProvider.cartItems.isEmpty
+      body: cartProvider.items.isEmpty
           ? const Center(child: Text('Your cart is empty.'))
           : Column(
               children: [
                 Expanded(
                   child: ListView.builder(
-                    itemCount: cartProvider.cartItems.length,
+                    itemCount: cartProvider.items.length,
                     itemBuilder: (context, index) {
-                      final item = cartProvider.cartItems[index];
+                      final item = cartProvider.items[index];
                       return Card(
                         margin: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 5),
@@ -38,7 +38,7 @@ class CartScreen extends StatelessWidget {
                           trailing: IconButton(
                             icon: const Icon(Icons.delete),
                             onPressed: () {
-                              cartProvider.removeCartItem(item.id!);
+                              cartProvider.remove(item.id!);
                             },
                           ),
                         ),

@@ -31,41 +31,47 @@ import '../model/productmodeldummydata.dart';
 // }
 
 
+import 'package:flutter/material.dart';
+import '../model/productmodel.dart';
+
 class CartProvider with ChangeNotifier {
-  List<ProductModel> cartItems = [];
-  CartDBHelper _dbHelper = CartDBHelper();
+  final _dbHelper = CartDBHelper();
+  List<ProductModel> _items = [];
   List<ProductModel> productList = dummyProductList;
 
+
   CartProvider() {
-    loadCartFromDB();
+    _loadCart();
   }
 
-  List<ProductModel> get items => cartItems;
+  List<ProductModel> get items => _items;
 
   double get totalPrice =>
-      cartItems.fold(0.0, (sum, item) => sum + (item.price ?? 0));
+      _items.fold(0.0, (sum, item) => sum + (item.price ?? 0));
 
-  Future<void> loadCartFromDB() async {
-    cartItems = await _dbHelper.fetchItems();
+  // Load cart from local DB
+  Future<void> _loadCart() async {
+    _items = await _dbHelper.fetchItems();
     notifyListeners();
   }
 
-  void addProduct(ProductModel product) async {
-    if (!cartItems.any((item) => item.id == product.id)) {
-      cartItems.add(product);
-      await _dbHelper.insertItem(product);
-      notifyListeners();
-    }
+  // Add item to cart (even if it's already there)
+  Future<void> add(ProductModel product) async {
+    _items.add(product);
+    await _dbHelper.insertItem(product);
+    notifyListeners();
   }
 
-  void removeCartItem(String id) async {
-    cartItems.removeWhere((item) => item.id == id);
+  // Remove item by ID
+  Future<void> remove(String id) async {
+    _items.removeWhere((item) => item.id == id);
     await _dbHelper.deleteItem(id);
     notifyListeners();
   }
 
-  void clearCart() async {
-    cartItems.clear();
+  // Clear entire cart
+  Future<void> clear() async {
+    _items.clear();
     await _dbHelper.clearCart();
     notifyListeners();
   }
