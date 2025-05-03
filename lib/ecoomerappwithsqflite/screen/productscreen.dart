@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:practicsflutterallproject/ecoomerapp/screen/cartscreen.dart';
-import '../controller/getxController.dart';
+import 'package:provider/provider.dart';
+import '../controller/cartProvider.dart';
+import 'getxAddtoCart.dart';
 
 class ProductListScreen extends StatelessWidget {
-  const ProductListScreen({Key? key}) : super(key: key);
+  const ProductListScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final CartController cartController = Get.put(CartController());
+    final cartProvider = Provider.of<CartProvider>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -17,22 +19,25 @@ class ProductListScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.shopping_cart),
             onPressed: () {
-              Get.to(() => const CartScreen());
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const CartScreen()),
+              );
             },
           ),
         ],
       ),
       body: GridView.builder(
         padding: const EdgeInsets.all(10),
-        itemCount: cartController.productList.length,
+        itemCount: cartProvider.productList.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
+          crossAxisCount: 2, // two products per row
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           childAspectRatio: 2 / 3,
         ),
         itemBuilder: (context, index) {
-          final product = cartController.productList[index];
+          final product = cartProvider.productList[index];
           return Card(
             elevation: 4,
             shape: RoundedRectangleBorder(
@@ -43,13 +48,11 @@ class ProductListScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: ClipRRect(
-                    borderRadius: const BorderRadius.vertical(
-                        top: Radius.circular(12)),
+                    borderRadius:
+                        const BorderRadius.vertical(top: Radius.circular(12)),
                     child: Image.network(
                       product.image ?? "",
                       fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) =>
-                          const Center(child: Icon(Icons.image)),
                     ),
                   ),
                 ),
@@ -71,12 +74,12 @@ class ProductListScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: ElevatedButton(
                     onPressed: () {
-                      cartController.addItem(product);
-                      Get.snackbar(
-                        "Added to Cart",
-                        "${product.name} has been added",
-                        snackPosition: SnackPosition.BOTTOM,
-                        duration: const Duration(seconds: 1),
+                      cartProvider.add(product);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('${product.name} added to cart'),
+                          duration: const Duration(seconds: 1),
+                        ),
                       );
                     },
                     child: const Text('Add to Cart'),

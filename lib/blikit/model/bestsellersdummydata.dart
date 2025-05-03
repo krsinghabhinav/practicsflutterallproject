@@ -1,0 +1,136 @@
+import 'BestsellerModel.dart';
+
+final List<BestsellerModel> bestsellersdummydata = [
+  BestsellerModel(
+    title: 'Dairy, Bread & Eggs',
+    items: ['milk.png', 'bread.png', 'eggs.png', 'cheese.png'],
+    images: [
+      'assets/uiImages/c4.png',
+      'assets/uiImages/image 35.png',
+      'assets/uiImages/image 23.png',
+      'assets/uiImages/image 36.png',
+    ],
+    more: '+98 more',
+    category: 'All',
+  ),
+  BestsellerModel(
+    title: 'Vegetables & Fruits',
+    items: ['tomato.png', 'apple.png', 'onion.png', 'spinach.png'],
+    images: [
+      'assets/uiImages/c4.png',
+      'assets/uiImages/image 35.png',
+      'assets/uiImages/image 23.png',
+      'assets/uiImages/image 36.png',
+    ],
+    more: '+98 more',
+    category: 'All',
+  ),
+  BestsellerModel(
+    title: 'Oil, Ghee & Masala',
+    items: ['oil.png', 'ghee.png', 'masala1.png', 'masala2.png'],
+    images: [
+      'assets/uiImages/c4.png',
+      'assets/uiImages/image 35.png',
+      'assets/uiImages/image 23.png',
+      'assets/uiImages/image 36.png',
+    ],
+    more: '+115 more',
+    category: 'All',
+  ),
+  BestsellerModel(
+    title: 'Summer Essentials',
+    items: ['sunscreen.png', 'hat.png', 'sunglasses.png', 'fan.png'],
+    images: [
+      'assets/uiImages/c4.png',
+      'assets/uiImages/image 35.png',
+      'assets/uiImages/image 23.png',
+      'assets/uiImages/image 36.png',
+    ],
+    more: '+45 more',
+    category: 'Summer',
+  ),
+  BestsellerModel(
+    title: 'Summer Drinks',
+    items: ['lemonade.png', 'icetea.png', 'coconutwater.png', 'juice.png'],
+    images: [
+      'assets/uiImages/c4.png',
+      'assets/uiImages/image 35.png',
+      'assets/uiImages/image 23.png',
+      'assets/uiImages/image 36.png',
+    ],
+    more: '+32 more',
+    category: 'Summer',
+  ),
+  BestsellerModel(
+    title: 'Smartphones',
+    items: ['phone1.png', 'phone2.png', 'phone3.png', 'phone4.png'],
+    images: [
+      'assets/uiImages/c4.png',
+      'assets/uiImages/image 35.png',
+      'assets/uiImages/image 23.png',
+      'assets/uiImages/image 36.png',
+    ],
+    more: '+25 more',
+    category: 'Electronics',
+  ),
+  BestsellerModel(
+    title: 'Headphones & Speakers',
+    items: ['headphone.png', 'speaker.png', 'earbuds.png', 'neckband.png'],
+    images: [
+      'assets/uiImages/c4.png',
+      'assets/uiImages/image 35.png',
+      'assets/uiImages/image 23.png',
+      'assets/uiImages/image 36.png',
+    ],
+    more: '+30 more',
+    category: 'Electronics',
+  ),
+  BestsellerModel(
+    title: 'Skincare',
+    items: ['facewash.png', 'moisturizer.png', 'serum.png', 'sunscreen.png'],
+    images: [
+      'assets/uiImages/c4.png',
+      'assets/uiImages/image 35.png',
+      'assets/uiImages/image 23.png',
+      'assets/uiImages/image 36.png',
+    ],
+    more: '+65 more',
+    category: 'Beauty',
+  ),
+  BestsellerModel(
+    title: 'Makeup',
+    items: ['lipstick.png', 'foundation.png', 'mascara.png', 'eyeshadow.png'],
+    images: [
+      'assets/uiImages/c4.png',
+      'assets/uiImages/image 35.png',
+      'assets/uiImages/image 23.png',
+      'assets/uiImages/image 36.png',
+    ],
+    more: '+78 more',
+    category: 'Beauty',
+  ),
+  BestsellerModel(
+    title: 'Kids Clothing',
+    items: ['tshirt.png', 'shorts.png', 'dress.png', 'shoes.png'],
+    images: [
+      'assets/uiImages/c4.png',
+      'assets/uiImages/image 35.png',
+      'assets/uiImages/image 23.png',
+      'assets/uiImages/image 36.png',
+    ],
+    more: '+55 more',
+    category: 'Kids',
+  ),
+  BestsellerModel(
+    title: 'Kids Toys',
+    items: ['toy1.png', 'toy2.png', 'toy3.png', 'toy4.png'],
+    images: [
+      'assets/uiImages/c4.png',
+      'assets/uiImages/image 35.png',
+      'assets/uiImages/image 23.png',
+      'assets/uiImages/image 36.png',
+    ],
+    more: '+40 more',
+    category: 'Kids',
+  ),
+];
